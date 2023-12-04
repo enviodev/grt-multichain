@@ -5,6 +5,8 @@ type Account {
   approvals: [Approval!]! @derivedFrom(field: "owner")
   # account balance of tokens
   balance: BigInt!
+  balancePolygon: BigInt!
+  balanceEthereum: BigInt!
 }
 
 type Approval {

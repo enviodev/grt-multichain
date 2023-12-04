@@ -1,18 +1,25 @@
 name: erc20indexer
 description: ERC-20 indexer
+contracts:
+  - name: ERC20
+    handler: src/EventHandlers.ts
+    events:
+      - event: "Approval(address indexed owner, address indexed spender, uint256 value)"
+        requiredEntities:
+          - name: "Account"
+          - name: "Approval"
+      - event: "Transfer(address indexed from, address indexed to, uint256 value)"
+        requiredEntities:
+          - name: "Account"
+          - name: "Approval"
 networks:
   - id: 137 # Polygon
     start_block: 11336123
     contracts:
       - name: ERC20
         address: "0x5fe2B58c013d7601147DcdD68C143A77499f5531" #GRT
-        handler: src/EventHandlers.ts
-        events:
-          - event: "Approval(address indexed owner, address indexed spender, uint256 value)"
-            requiredEntities:
-              - name: "Account"
-              - name: "Approval"
-          - event: "Transfer(address indexed from, address indexed to, uint256 value)"
-            requiredEntities:
-              - name: "Account"
-              - name: "Approval"
+  - id: 1 # Ethereum
+    start_block: 11446769
+    contracts:
+      - name: ERC20
+        address: "0xc944E90C64B2c07662A292be6244BDf05Cda44a7" #GRT
